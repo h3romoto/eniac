@@ -18,7 +18,7 @@ const execAsync = util.promisify(child_process.exec);
 
 const terra = async () => {
   try {
-    const resultPromise = execAsync('cd terraform; pwd; ls -al; terraform refresh');    //; terraform plan; terraform apply -auto-approve
+    const resultPromise = execAsync('cd terraform; pwd; ls -al');    //terraform refresh; terraform plan; terraform apply -auto-approve
     const {childProcess} = resultPromise;
     const obj = await resultPromise;
     console.log(obj.stdout);   //{ stdout: 'hello there\n', stderr: '' }
