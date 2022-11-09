@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Logo, UserFormRow } from "../components";
+import { Logo, UserFormRow, Alert } from "../components";
 import styled from "styled-components";
 
 const initialState = {
@@ -7,6 +7,7 @@ const initialState = {
   email: "",
   password: "",
   isMember: true,
+  showAlert: true,
 };
 
 const Register = () => {
@@ -26,9 +27,21 @@ const Register = () => {
     <Wrapper className="full-page">
       <form className="form" onSubmit={handleSubmit}>
         <Logo />
-        <UserFormRow type="email" name="email" onChange={handleChange} />
-        <UserFormRow type="text" name="password" onChange={handleChange}/>
-        <button type="submit" className="btn btn-block">
+        <h4>Login</h4>
+        { values.showAlert && <Alert />}
+        <UserFormRow 
+          type="email" 
+          name="email" 
+          onChange={handleChange} 
+        />
+        <UserFormRow 
+          type="text" 
+          name="password" 
+          onChange={handleChange}
+        />
+        <button 
+          type="submit" 
+          className="btn btn-block">
           submit
         </button>
       </form>

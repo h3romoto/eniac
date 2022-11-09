@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Logo, BuildFormRow } from "../components";
+import { Logo, BuildFormRow, Alert } from "../components";
 import styled from "styled-components";
 
 const initialState = {
@@ -7,6 +7,7 @@ const initialState = {
   storage: "",
   ram: "",
   isAlive: true,
+  showAlert: true,
 };
 
 const BuildInstance = () => {
@@ -26,6 +27,7 @@ const BuildInstance = () => {
     <Wrapper className="full-page">
       <form className="form" onSubmit={onSubmit}>
         <Logo />
+        <h4>Build your vm</h4>
         <BuildFormRow 
           type="text" 
           name="OS*" 
@@ -43,7 +45,9 @@ const BuildInstance = () => {
           name="RAM*" 
           onChange={handleChange} 
         />
-        <button type="submit" className="btn btn-block">
+        <button 
+          type="submit" 
+          className="btn btn-block">
           submit
         </button>
       </form>
