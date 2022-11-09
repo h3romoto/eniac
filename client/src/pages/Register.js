@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Logo } from "../components";
+import { Logo, UserFormRow } from "../components";
 import styled from "styled-components";
 
 const initialState = {
@@ -17,27 +17,17 @@ const Register = () => {
     console.log(e.target);
   };
 
-  const onSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log(e.target);
   };
 
   return (
     <Wrapper className="full-page">
-      <form className="form" onSubmit={onSubmit}>
+      <form className="form" onSubmit={handleSubmit}>
         <Logo />
-        <div className="form-row">
-          <label htmlFor="name" className="form-label">
-            name
-          </label>
-          <input
-            type="text"
-            value={values.name}
-            name="name"
-            onChange={handleChange}
-            className="form-input"
-          ></input>
-        </div>
+        <UserFormRow type="email" name="email" onChange={handleChange} />
+        <UserFormRow type="text" name="password" onChange={handleChange}/>
         <button type="submit" className="btn btn-block">
           submit
         </button>
