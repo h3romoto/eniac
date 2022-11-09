@@ -14,6 +14,9 @@ const Register = () => {
   const [values, setValues] = useState(initialState);
   // global state and useNavigate
 
+  const toggleMember = () => {
+    setValues({ ...values, isMember: !values.isMember });
+  };
   const handleChange = (e) => {
     console.log(e.target);
   };
@@ -27,28 +30,43 @@ const Register = () => {
     <Wrapper className="full-page">
       <form className="form" onSubmit={handleSubmit}>
         <Logo />
-        <h4>Login</h4>
-        { values.showAlert && <Alert />}
+        <h4>{ values.isMember ? "Login" : "Register" }</h4>
+        { values.showAlert && <Alert /> }
+        { !values.isMember && (
+          <UserFormRow 
+            type="tex" 
+            name="name" 
+            onChange={handleChange} 
+          />
+        )}
         <UserFormRow 
           type="email" 
           name="email" 
           onChange={handleChange} 
-        />
+          />
         <UserFormRow 
           type="text" 
           name="password" 
-          onChange={handleChange}
+          onChange={handleChange} 
         />
-        <button 
-          type="submit" 
-          className="btn btn-block">
-          submit
+        <button type="submit" className="btn btn-block">
+          Submit
         </button>
+        <p>
+          { values.isMember ? "Not a member yet?": "Already have an account?"}
+          <button 
+            type="button" 
+            onClick={toggleMember}
+            className="member-btn">
+              { values.isMember ? "Register" : "Login"}
+          </button>
+        </p>
       </form>
     </Wrapper>
   );
 };
 export default Register;
+
 
 const Wrapper = styled.section`
   display: grid;
