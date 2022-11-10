@@ -18,12 +18,30 @@ import {
   VM_DESTROY_BEGIN,
   VM_DESTROY_SUCCESS,
   VM_DESTROY_ERROR,
-} from "./PaaSActions";
+} from "./actions";
 
-import { initialState } from "./PaaSContext";
+import { initialState } from "./appContext";
 
 const reducer = (state, action) => {
-  if (action.type == VM_BUILD_BEGIN) {
+  if (action.type === DISPLAY_ALERT) {
+    return {
+      ...state,
+      showAlert: true,
+      alertType: 'danger',
+      alertText: 'Please provide all values!',
+    }
+  }
+
+  if (action.type === CLEAR_ALERT) {
+    return {
+      ...state,
+      showAlert: false,
+      alertType: '',
+      alertText: '',
+    }
+  }
+
+  if (action.type === VM_BUILD_BEGIN) {
     return {
       ...state,
       showAlert: true,
@@ -32,7 +50,7 @@ const reducer = (state, action) => {
     };
   }
 
-  if (action.type == VM_BUILD_SUCCESS) {
+  if (action.type === VM_BUILD_SUCCESS) {
     return {
       ...state,
       showAlert: true,
@@ -41,7 +59,7 @@ const reducer = (state, action) => {
     };
   }
 
-  if (action.type == VM_BUILD_ERROR) {
+  if (action.type === VM_BUILD_ERROR) {
     return {
       ...state,
       showAlert: true,

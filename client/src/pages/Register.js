@@ -1,28 +1,36 @@
 import { useState, useEffect } from "react";
 import { Logo, UserFormRow, Alert } from "../components";
 import styled from "styled-components";
+import { useAppContext } from "../context/appContext";
 
 const initialState = {
   name: "",
   email: "",
   password: "",
   isMember: true,
-  showAlert: true,
 };
 
 const Register = () => {
   const [values, setValues] = useState(initialState);
   // global state and useNavigate
+  const { isLoading, showAlert, displayAlert } = useAppContext();
+  console.log(useAppContext())
 
   const toggleMember = () => {
     setValues({ ...values, isMember: !values.isMember });
   };
+
   const handleChange = (e) => {
-    console.log(e.target);
+    setValues({ ...values, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const { name, email, password, isMember } = values;
+    if (!email || !password || (!isMember && !name)) {
+      displayAlert();
+      return
+    }
     console.log(e.target);
   };
 
@@ -31,23 +39,26 @@ const Register = () => {
       <form className="form" onSubmit={handleSubmit}>
         <Logo />
         <h4>{ values.isMember ? "Login" : "Register" }</h4>
-        { values.showAlert && <Alert /> }
+        { showAlert && <Alert /> }
         { !values.isMember && (
           <UserFormRow 
-            type="tex" 
-            name="name" 
-            onChange={handleChange} 
+            type="text"
+            name="name"
+            value={values.name}
+            handleChange={handleChange}
           />
         )}
         <UserFormRow 
-          type="email" 
+          type="email"
           name="email" 
-          onChange={handleChange} 
+          value={values.email}
+          handleChange={handleChange} 
           />
         <UserFormRow 
           type="text" 
-          name="password" 
-          onChange={handleChange} 
+          name="password"
+          value={values.password}
+          handleChange={handleChange} 
         />
         <button type="submit" className="btn btn-block">
           Submit
