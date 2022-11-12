@@ -1,38 +1,31 @@
 import express from "express";
 const app = express();
 import dotenv from "dotenv";
-import * as child_process from "node:child_process";
-import * as util from "node:util";
-import notFoundMiddleware from "./middleware/not-found.js";
 dotenv.config();
 
 app.use(express.json());
 
 const port = process.env.PORT || 5000;
 
-// db and authenticateUser
 import connectDB from "./db/connect.js";
+import notFoundMiddleware from "./middleware/not-found.js";
+import errorHandlerMiddleware from "./middleware/error-handler.js";
 
-// terraform, async call
-const execAsync = util.promisify(child_process.exec);
+// routes
+import authRouter from "./routes/authRoutes.sj";
 
 // middleware
-notFoundMiddleware
+app.use(notFoundMiddleware);
+app.use(errorHandlerMiddleware);
+
+app.use(express.json());
 
 app.get("/", (req, res) => {
+  throw new Error("error");
   res.send("Welcome!");
 });
 
-const terra = async () => {
-  try {
-    const resultPromise = execAsync("cd terraform; pwd; ls -al"); //terraform refresh; terraform plan; terraform apply -auto-approve
-    const { childProcess } = resultPromise;
-    const obj = await resultPromise;
-    console.log(obj.stdout); //{ stdout: 'hello there\n', stderr: '' }
-  } catch (error) {
-    console.log(error);
-  }
-};
+app.use("/api/v1/auth", authRouter);
 
 const start = async () => {
   try {
@@ -45,5 +38,4 @@ const start = async () => {
   }
 };
 
-// terra()
 start();
