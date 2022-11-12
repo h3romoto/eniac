@@ -16,6 +16,9 @@ import authRouter from "./routes/authRoutes.js";
 import jobsRouter from "./routes/jobRoutes.js";
 import instanceRouter from "./routes/instanceRoutes.js"
 
+// allows 
+import "express-async-errors";
+
 app.use(express.json());
 
 app.use("/api/v1/auth", authRouter);
