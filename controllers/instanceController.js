@@ -30,3 +30,4 @@ const destroyInstance = async () => {
   }
 }
 
+export { buildInstance, connectInstance, destroyInstance }
