@@ -13,3 +13,20 @@ const buildInstance = async () => {
     console.log(error);
   }
 };
+
+const connectInstance = async () => {
+  try {
+    console.log("Connecting to instance");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const destroyInstance = async () => {
+  try {
+    console.log("Deleting your instance")
+  } catch (error) {
+    console.log(error)
+  }
+}
+
