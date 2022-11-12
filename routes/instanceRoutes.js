@@ -1,11 +1,9 @@
 import express from "express";
-import { buildInstance, connectInstance, destroyInstance } from "../controllers/instanceController.js";
-import router from "./authRoutes.js";
+import { buildInstance, connectInstance, destroyInstance, updateInstance } from "../controllers/instanceController.js";
 
-router = express.Router()
+const router = express.Router()
 
-router.route("/create-instance").post(buildInstance);
-router.route("/connect-instance").post(connectInstance);
-route.route("/delete-instance").patch(destroyInstance);
+router.route("/").post(buildInstance);
+router.route("/vm/:id").delete(destroyInstance).patch(updateInstance).post(connectInstance);
 
 export default router;

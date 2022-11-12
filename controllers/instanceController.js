@@ -3,31 +3,31 @@ import * as util from "node:util";
 
 const execAsync = util.promisify(child_process.exec);
 
-const buildInstance = async () => {
+const buildInstance = async (req,res) => {
   try {
     const resultPromise = execAsync("cd terraform; pwd; ls -al"); //terraform refresh; terraform plan; terraform apply -auto-approve
     const { childProcess } = resultPromise;
     const obj = await resultPromise;
-    console.log(obj.stdout);
+    res.send(obj.stdout);
   } catch (error) {
-    console.log(error);
+    res.send(error);
   }
 };
 
-const connectInstance = async () => {
-  try {
-    console.log("Connecting to instance");
-  } catch (error) {
-    console.log(error);
-  }
+const connectInstance = async (req,res) => {
+  res.send("Connecting to instance");
 };
 
-const destroyInstance = async () => {
-  try {
-    console.log("Deleting your instance")
-  } catch (error) {
-    console.log(error)
-  }
-}
+const updateInstance = async (req,res) => {
+  res.send("Update Instance");
+};
 
-export { buildInstance, connectInstance, destroyInstance }
+const destroyInstance = async (req,res) => {
+  res.send("Deleting your instance");
+};
+
+const showInstanceStats = async (req,res) => {
+  res.send("Getting stats");
+};
+
+export { buildInstance, connectInstance, destroyInstance, showInstanceStats, updateInstance };

@@ -12,20 +12,23 @@ import notFoundMiddleware from "./middleware/not-found.js";
 import errorHandlerMiddleware from "./middleware/error-handler.js";
 
 // routes
-import authRouter from "./routes/authRoutes.sj";
+import authRouter from "./routes/authRoutes.js";
+import jobsRouter from "./routes/jobRoutes.js";
+import instanceRouter from "./routes/instanceRoutes.js"
+
+app.use(express.json());
+
+app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/jobs", jobsRouter);
+app.use("/api/v1/instance", instanceRouter);
+
+app.get("/", (req, res) => {
+  res.send("Welcome!");
+});
 
 // middleware
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
-
-app.use(express.json());
-
-app.get("/", (req, res) => {
-  throw new Error("error");
-  res.send("Welcome!");
-});
-
-app.use("/api/v1/auth", authRouter);
 
 const start = async () => {
   try {
