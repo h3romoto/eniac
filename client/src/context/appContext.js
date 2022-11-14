@@ -1,5 +1,6 @@
 import React, { useReducer, useContext } from "react";
 import reducer from "./reducer";
+import axios from "axios";
 import {
   DISPLAY_ALERT,
   CLEAR_ALERT,
@@ -34,16 +35,18 @@ const initialState = {
   token: "",
   userLocation: "",
   // vm instance
-  id: "",
-  specs: {
+  inst_specs: {
+    name: "",
+    id: "",
+    pub_key: "",
     os: { name: "", ver: "" },
-    ram: Number,
-    storage: Number,
-    cpu: Number,
+    ram: "",
+    storage: "",
+    cpu: "",
+    region: "",
+    tier: "",
+    exists: false,
   },
-  region: "",
-  tier: "",
-  pub_key: "",
 };
 
 const AppContext = React.createContext();
@@ -51,10 +54,22 @@ const AppContext = React.createContext();
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  const buildInstance = async () => {
+    dispatch({ type: VM_BUILD_BEGIN });
+    try {
+      const response = await axios.post("/api/v1/instance");
+      console.log(response.data);
+      dispatch({ type: VM_BUILD_SUCCESS });
+      // addUserToLocalStorage
+    } catch (error) {
+      dispatch({ type: VM_BUILD_ERROR });
+    }
+  };
+
   const clearAlert = () => {
     setTimeout(() => {
-      dispatch({ type: CLEAR_ALERT})
-    }, 3000)
+      dispatch({ type: CLEAR_ALERT });
+    }, 3000);
   };
 
   const displayAlert = () => {
@@ -65,7 +80,13 @@ const AppProvider = ({ children }) => {
   };
 
   return (
-    <AppContext.Provider value={{ ...state, displayAlert }}>
+    <AppContext.Provider
+      value={{
+        ...state,
+        displayAlert,
+        buildInstance,
+      }}
+    >
       {/* render app */}
       {children}
     </AppContext.Provider>
