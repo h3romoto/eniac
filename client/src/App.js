@@ -12,7 +12,7 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/landing' element={<Landing />} />
         <Route path='/create-instance' element={<Instance />} />
-        <Route path='/connect' element={<Connect />} />
+        <Route path='/connect-instance' element={<Connect />} />
         <Route path='*' element={<Error />} />
       </Routes>
     </BrowserRouter>
