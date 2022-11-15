@@ -6,12 +6,12 @@ const execAsync = util.promisify(child_process.exec);
 const buildInstance = async (req, res) => {
   try {
     console.log("Building instance ...");
-    const resultPromise = execAsync("cd terraform; pwd; terraform refresh; terraform plan; terraform apply -auto-approve"); //terraform refresh; terraform plan; terraform apply -auto-approve
+    const resultPromise = execAsync("cd terraform && pwd && ls -als && echo $PATH"); //terraform refresh; terraform plan; terraform apply -auto-approve
     const { childProcess } = resultPromise;
     const obj = await resultPromise;
-    res.json({msg:obj.stdout});
+    res.json(obj);
   } catch (error) {
-    res.send(error);
+    res.json(error);
   }
 };
 

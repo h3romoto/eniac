@@ -6,7 +6,7 @@ dotenv.config();
 
 app.use(express.json());
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT;
 
 import connectDB from "./db/connect.js";
 import notFoundMiddleware from "./middleware/not-found.js";

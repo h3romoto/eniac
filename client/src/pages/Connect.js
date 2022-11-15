@@ -2,15 +2,15 @@ import { Terminal } from "xterm";
 import xterm from "../../node_modules/xterm/lib/xterm";
 import styled from "styled-components";
 
-const term = new Terminal();
-term.open(document.getElementById('terminal'));
-term.write('Hello from \x1B[1;3;31mUtu\x1B[0m $ ')
-
 const Connect = () => {
+//   const term = new Terminal();
+//   term.open(document.getElementById('terminal'));
+//   term.write('Hello from \x1B[1;3;31mUtu\x1B[0m $ ')
   return (
     <Wrapper>
       {xterm}
-      <div id="terminal"></div>
+      <div id="terminal">
+      </div>
     </Wrapper>
   );
 };
