@@ -8,4 +8,6 @@ terraform {
 }
 
 provider "libvirt" {
+  # connection URI to local emulator ("hypervisor")
+  uri = "qemu:///system"
 }
