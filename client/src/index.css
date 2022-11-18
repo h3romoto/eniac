@@ -13,27 +13,11 @@ html {
 
 :root {
   /* colors */
-  --primary-50: #e0fcff;
-  --primary-100: #bef8fd;
-  --primary-200: #87eaf2;
-  --primary-300: #54d1db;
-  --primary-400: #38bec9;
-  --primary-500: #2cb1bc;
-  --primary-600: #14919b;
-  --primary-700: #0e7c86;
-  --primary-800: #0a6c74;
-  --primary-900: #044e54;
+  --primary-500: #2156B2;
+
 
   /* grey */
   --grey-50: #f0f4f8;
-  --grey-100: #d9e2ec;
-  --grey-200: #bcccdc;
-  --grey-300: #9fb3c8;
-  --grey-400: #829ab1;
-  --grey-500: #627d98;
-  --grey-600: #486581;
-  --grey-700: #334e68;
-  --grey-800: #243b53;
   --grey-900: #102a43;
   
   /* rest of the colors */
@@ -60,14 +44,11 @@ html {
   --fluid-width: 90vw;
   --breakpoint-lg: 992px;
   --nav-height: 6rem;
+
   /* box shadow*/
-  --shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  --shadow-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-3: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --shadow-4: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --button-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
+  --form-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
+  --form-row-shadow: rgb(204, 219, 232) 3px 3px 4px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 4px 1px inset;
 }
 
 body {
@@ -153,8 +134,8 @@ ul {
   border: transparent;
   border-radius: var(--borderRadius);
   letter-spacing: var(--letterSpacing);
+  box-shadow: var(--button-shadow);
   padding: 0.375rem 0.75rem;
-  box-shadow: var(--shadow-2);
   transition: var(--transition);
   text-transform: capitalize;
   display: inline-block;
@@ -213,7 +194,7 @@ ul {
   max-width: var(--fixed-width);
   background: var(--white);
   border-radius: var(--borderRadius);
-  box-shadow: var(--shadow-2);
+  box-shadow: var(--form-shadowshadow);
   padding: 2rem 2.5rem;
   margin: 3rem auto;
   transition: var(--transition);
@@ -233,9 +214,10 @@ ul {
 .form-select {
   width: 100%;
   padding: 0.375rem 0.75rem;
+  box-shadow: var(--form-row-shadow);
   border-radius: var(--borderRadius);
   background: var(--backgroundColor);
-  border: 1px solid var(--grey-200);
+  border: transparent;
 }
 .form-input,
 .form-select,

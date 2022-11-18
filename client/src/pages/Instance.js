@@ -83,11 +83,7 @@ const Wrapper = styled.section`
   .btn {
     margin-top: 1rem;
   }
-  .member-btn {
-    background: transparent;
-    border: transparent;
-    color: var(--primary-500);
-    cursor: pointer;
-    letter-spacing: var(--letterSpacing);
-  }
 `;
+
+
+
