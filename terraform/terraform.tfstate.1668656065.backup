@@ -1,0 +1,49 @@
+{
+  "version": 4,
+  "terraform_version": "1.2.9",
+  "serial": 99,
+  "lineage": "8679961d-6745-0d34-88f8-69c95b8cb720",
+  "outputs": {},
+  "resources": [
+    {
+      "mode": "data",
+      "type": "template_file",
+      "name": "user_data",
+      "provider": "provider[\"registry.terraform.io/hashicorp/template\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "filename": null,
+            "id": "d0d02d0ab5208ae75a0eb7341f51987d33e868e766f6b4f3cd62d34bd53d8e6a",
+            "rendered": "#cloud-config\n# https://cloudinit.readthedocs.io/en/latest/topics/examples.html\n#\n# This is the configuration syntax that the write_files module will know how to understand. \n# Encoding can be given b64 or gzip or (gz+b64).\n# The content will be decoded accordingly and then written to the path that is provided.\n\n# Note: Content strings here are truncated for example purposes\n\nssh_pwauth: True\nchpasswd:\n  list: |\n     root: password\n  expire: False\n\nusers:\n  - name: khondo1\n    passwd: password\n    ssh_authorized_keys:\n      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCucKpKZfolNlN9oMprbKBUsdcdqjVW1alJ+Bcg1NMu7l6RP2t6nC7xlEzTz2laHmhJGYQR3S2eZH5TeVlQTxVJz1TIjQM94s2hD14V9eqkA1MqcpYkHPWb82m4QpD7bwvSvgIst7PrymqVkDVTyKrYlCgIW+xNT/KwnK/PLtHdo8gfqCZduY/AEVsu9np7Dd0vSQJtaUEukId3GqVSHp8DWLprTi9b21VwyZFM2W3zlNGnXB0fmAL5h2Wl8ccWM5jbxL4GUqw/0vKQsMgslTKCrpddcfW9WV7LSw/DWGqHejWM11+qWx83ewqu70pV94RSypmy83VRR0bbjhDlAyAI0QMZ8ViTzYDPQ86DozR+ynxfGGaofth8RWmJkJBYMtej5yrfh8uFE633kosF7GtGNyxnFwS3FL9wMV7SdH4v89IpZJg00WD2YzP8KiLZaCtYbdtabOOHmbIIflV1eTrAAzdpGyoXnBsm4EYId4vbmNtMFpGh7rZP+TFhlppSeak= khondo1@miaas\n    sudo: ['ALL=(ALL) NOPASSWD:ALL']\n    shell: /bin/bash\n    groups: wheel",
+            "template": "#cloud-config\n# https://cloudinit.readthedocs.io/en/latest/topics/examples.html\n#\n# This is the configuration syntax that the write_files module will know how to understand. \n# Encoding can be given b64 or gzip or (gz+b64).\n# The content will be decoded accordingly and then written to the path that is provided.\n\n# Note: Content strings here are truncated for example purposes\n\nssh_pwauth: True\nchpasswd:\n  list: |\n     root: password\n  expire: False\n\nusers:\n  - name: khondo1\n    passwd: password\n    ssh_authorized_keys:\n      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCucKpKZfolNlN9oMprbKBUsdcdqjVW1alJ+Bcg1NMu7l6RP2t6nC7xlEzTz2laHmhJGYQR3S2eZH5TeVlQTxVJz1TIjQM94s2hD14V9eqkA1MqcpYkHPWb82m4QpD7bwvSvgIst7PrymqVkDVTyKrYlCgIW+xNT/KwnK/PLtHdo8gfqCZduY/AEVsu9np7Dd0vSQJtaUEukId3GqVSHp8DWLprTi9b21VwyZFM2W3zlNGnXB0fmAL5h2Wl8ccWM5jbxL4GUqw/0vKQsMgslTKCrpddcfW9WV7LSw/DWGqHejWM11+qWx83ewqu70pV94RSypmy83VRR0bbjhDlAyAI0QMZ8ViTzYDPQ86DozR+ynxfGGaofth8RWmJkJBYMtej5yrfh8uFE633kosF7GtGNyxnFwS3FL9wMV7SdH4v89IpZJg00WD2YzP8KiLZaCtYbdtabOOHmbIIflV1eTrAAzdpGyoXnBsm4EYId4vbmNtMFpGh7rZP+TFhlppSeak= khondo1@miaas\n    sudo: ['ALL=(ALL) NOPASSWD:ALL']\n    shell: /bin/bash\n    groups: wheel",
+            "vars": null
+          },
+          "sensitive_attributes": []
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "libvirt_cloudinit_disk",
+      "name": "commoninit",
+      "provider": "provider[\"registry.terraform.io/dmacvicar/libvirt\"]",
+      "instances": []
+    },
+    {
+      "mode": "managed",
+      "type": "libvirt_domain",
+      "name": "domain-ubuntu",
+      "provider": "provider[\"registry.terraform.io/dmacvicar/libvirt\"]",
+      "instances": []
+    },
+    {
+      "mode": "managed",
+      "type": "libvirt_volume",
+      "name": "ubuntu-qcow2",
+      "provider": "provider[\"registry.terraform.io/dmacvicar/libvirt\"]",
+      "instances": []
+    }
+  ]
+}

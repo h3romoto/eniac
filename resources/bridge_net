@@ -1,0 +1,30 @@
+$ cd /etc/systemd/network
+$ vim /etc/systemd/network/br.netdev
+[NetDev]
+Name=bridge_name
+Kind=bridge
+
+# the bind network instruction set
+
+$ vim 1/etc/systemd/network/1-br0-bind.network 
+[Match]
+Name=interface_name
+
+[Network]
+Bridge=bridge_name
+
+
+# dhcp instruction set
+$ vim /etc/systemd/network/2-br0-dhcp.network 
+[Match]
+Name=interface_name
+
+[Network]
+DHCP=ipv4
+
+
+
+
+
+
+

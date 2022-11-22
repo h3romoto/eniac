@@ -17,6 +17,7 @@ client/node_modules
 ./terraform/*.tfstate*
 
 # misc
+
 .env
 .DS_Store
 .env.local
