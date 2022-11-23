@@ -49,7 +49,7 @@ resource "libvirt_domain" "domain-unix" {
   cloudinit = libvirt_cloudinit_disk.commoninit.id
 
   network_interface {
-    network_name   = "default"
+    network_name   = "local_cloud_net"
     wait_for_lease = true
     hostname       = var.vm_hostname
   }
